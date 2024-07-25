@@ -13,34 +13,75 @@ function getComputerChoice(){
 
 
 function getHumanChoice(){
-    let humanChoice = prompt("Enter ROCK, PAPER, SCISSORS")
-    humanChoice = humanChoice.toUpperCase
+    let humanChoice = prompt("Enter ROCK, PAPER, SCISSORS").toUpperCase();
+    
     return humanChoice
 }
 
+
 let humanScore = 0
-let compuerScore = 0
+let computerScore = 0
+
+
 
 function playRound(humanChoice, computerChoice){
     if(humanChoice === "ROCK" && computerChoice == "Paper"){
-        compuerScore++
+        computerScore++
         return "Computer Wins Paper beats Rock"
     }
     else if(humanChoice === "PAPER" && computerChoice === "Scissors"){
-        compuerScore++
+        computerScore++
         return "Computer Wins Scissors beats paper"
     }
     else if(humanChoice == "SCISSORS" && computerChoice == "Rock"){
-        compuerScore++
+        computerScore++
         return "Computer Wins Rock beats scissors"
     }
+    else if(humanChoice === "ROCK" && computerChoice === "Scissors"){
+        humanScore++
+        return "Human wins rock beats paper"
+    }
+    else if(humanChoice === "PAPER" && computerChoice === "Rock"){
+        humanScore++
+        return "Human wins paper beats rock"
+    }
+    else if(humanChoice === "SCISSORS" && computerChoice === "Paper"){
+        humanScore++
+        return "Human wins Scissors beats Paper"
+    }
 
-    
+    else{
+        return "TIE try again"
+    }
+
+
 }
 
 
-const humanSelection = getHumanChoice()
-const computerChoice = getComputerChoice()
 
-playRound(humanSelection, computerChoice)
+function playGame(){
+
+
+    for(let i = 0; i < 5; i++){
+        const humanSelection = getHumanChoice()
+        const computerChoice = getComputerChoice()
+        console.log(playRound(humanSelection, computerChoice))
+    }
+
+    if(humanScore > computerScore){
+        return "Human Won"
+    }
+    else if(computerScore > humanScore){
+        return "Computer Won"
+    }
+    else{
+        return "Tie"
+    }
+
+}
+
+
+
+console.log(playGame())
+
 
